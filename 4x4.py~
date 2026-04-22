@@ -1,0 +1,14 @@
+from itertools import combinations
+
+L = 16
+Na=8
+def generate_bitmasks(N):
+    for positions in combinations(range(L), N):
+        mask = 0
+        for p in positions:
+            mask |= 1 << p
+        yield mask
+
+# Example
+for mask in generate_bitmasks(Na):
+    print(bin(mask))
