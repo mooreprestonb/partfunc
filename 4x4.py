@@ -3,9 +3,10 @@
 from itertools import combinations
 import numpy
 import math
+import time
 
 Nx = 4
-Ny = 4
+Ny = 5
 L = Nx*Ny
 Na=8
 comb = math.comb(L,Na)
@@ -56,6 +57,7 @@ for n in range(L):
 sdict = {}
 keys = ['AA','AB','BA','BB']
 ngrid = 0
+stime = time.time()
 for grid in generate_grid(Na):
     ngrid += 1
     #print(grid)
@@ -70,6 +72,10 @@ for grid in generate_grid(Na):
     skey = "AA"+str(nb["AA"])+",AB"+str(nb["AB"]+nb["BA"])+",BB"+str(nb["BB"])
     sdict[skey]=sdict.get(skey,0)+1
 
+    if(time.time()-stime>5):
+        print(ngrid,"/",comb,"=",ngrid/comb)
+        stime = time.time()
+        
 #print(sdict)
 print_dict(sdict)
 
