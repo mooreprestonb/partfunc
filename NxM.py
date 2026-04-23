@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-
+# from Nx x Ny Grid of L size with Na A types enerate all possible combinatins 
 from itertools import combinations
 import numpy
 import math
 import time
 
 Nx = 4
-Ny = 5
+Ny = 8
 L = Nx*Ny
 Na=8
 comb = math.comb(L,Na)
-print(Nx,Ny,L,Na,comb)
+print(f"{Nx}x{Ny}={L} with {Na} type A and {comb} combination")
 ngbr = numpy.zeros((L,4),dtype=int)
 
 def print_dict(data):
@@ -38,17 +38,17 @@ def generate_grid(N):
         yield tuple(grid)
 
 #---------------------------------
-# create dict
+# Main
 
-#ngbr
-for n in range(L):
-    i = n%Nx
-    j = int(n/Nx)
-    nl = (i+1)%Nx+j*Nx
-    nr = (i-1)%Nx+j*Nx
-    nu = ((j+1)%Ny)*Nx+i
-    nd = ((j-1)%Ny)*Nx+i
-    ngbr[n]=numpy.array([nl,nr,nu,nd])
+#create ngbr array (Nx4) as there are 4 neighbors
+for n in range(L): # periodic neighbors
+    i = n%Nx # i value
+    j = int(n/Nx) # J value
+    nl = (i+1)%Nx+j*Nx # left
+    nr = (i-1)%Nx+j*Nx # right
+    nu = ((j+1)%Ny)*Nx+i # up 
+    nd = ((j-1)%Ny)*Nx+i # down
+    ngbr[n]=numpy.array([nl,nr,nu,nd]) # store
     #print(n,i,j,nl,nr,nu,nd)
     #print(n,ngbr[n])
 
