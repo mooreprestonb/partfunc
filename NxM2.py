@@ -8,7 +8,7 @@ import time
 Nx = 5
 Ny = 5
 L = Nx*Ny
-Na=8
+Na=12
 if(Na>L):
     print(f"Error, {Nx}x{Ny}={L} > {Na} A types request")
     exit(1)
